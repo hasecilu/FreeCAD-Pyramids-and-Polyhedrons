@@ -60,6 +60,9 @@ import math
 import sys
 from FreeCAD import Base
 
+translate = FreeCAD.Qt.translate
+QT_TRANSLATE_NOOP = FreeCAD.Qt.QT_TRANSLATE_NOOP
+
 def horizontal_regular_polygon_vertexes(sidescount,radius,z, startangle = 0):
     vertexes = []
     if radius != 0 :
@@ -250,8 +253,8 @@ class PyramidCommand:
     def GetResources(self):
         return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/pyramid.svg',
                 'Accel' : "Shift+P",
-                'MenuText': "Pyramid",
-                'ToolTip' : "Generate a Pyramid with any number of sides"}
+                'MenuText': QT_TRANSLATE_NOOP("Commands", "Pyramid"),
+                'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Pyramid with any number of sides")}
 
     def Activated(self):
         obj=FreeCAD.ActiveDocument.addObject("Part::FeaturePython","Pyramid")   # see https://www.freecadweb.org/wiki/Creating_a_FeaturePython_Box,_Part_II
@@ -322,8 +325,8 @@ class TetrahedronCommand:
     def GetResources(self):
         return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/tetrahedron.svg',
                 'Accel' : "Shift+T",
-                'MenuText': "Tetrahedron",
-                'ToolTip' : "Generate a Tetrahedron"}
+                'MenuText': QT_TRANSLATE_NOOP("Commands", "Tetrahedron"),
+                'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Tetrahedron")}
 
     def Activated(self):
         obj=FreeCAD.ActiveDocument.addObject("Part::FeaturePython","Tetrahedron")
@@ -392,8 +395,8 @@ class HexahedronCommand:
     def GetResources(self):
         return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/hexahedron.svg',
                 'Accel' : "Shift+H",
-                'MenuText': "Hexahedron",
-                'ToolTip' : "Generate a Hexahedron"}
+                'MenuText': QT_TRANSLATE_NOOP("Commands", "Hexahedron"),
+                'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Hexahedron")}
 
     def Activated(self):
         obj=FreeCAD.ActiveDocument.addObject("Part::FeaturePython","Hexahedron")
@@ -461,8 +464,8 @@ class OctahedronCommand:
     def GetResources(self):
         return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/octahedron.svg',
                 'Accel' : "Shift+O",
-                'MenuText': "Octahedron",
-                'ToolTip' : "Generate a Octahedron"}
+                'MenuText': QT_TRANSLATE_NOOP("Commands", "Octahedron"),
+                'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Octahedron")}
 
     def Activated(self):
         obj=FreeCAD.ActiveDocument.addObject("Part::FeaturePython","Octahedron")
@@ -558,8 +561,8 @@ class DodecahedronCommand:
     def GetResources(self):
         return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/dodecahedron.svg',
                 'Accel' : "Shift+D",
-                'MenuText': "Dodecahedron",
-                'ToolTip' : "Generate a Dodecahedron"}
+                'MenuText': QT_TRANSLATE_NOOP("Commands", "Dodecahedron"),
+                'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Dodecahedron")}
 
     def Activated(self):
         obj=FreeCAD.ActiveDocument.addObject("Part::FeaturePython","Dodecahedron")
@@ -649,8 +652,8 @@ class IcosahedronCommand:
     def GetResources(self):
         return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/icosahedron.svg',
                 'Accel' : "Shift+I",
-                'MenuText': "Icosahedron",
-                'ToolTip' : "Generate a Icosahedron"}
+                'MenuText': QT_TRANSLATE_NOOP("Commands", "Icosahedron"),
+                'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Icosahedron")}
 
     def Activated(self):
         obj=FreeCAD.ActiveDocument.addObject("Part::FeaturePython","Icosahedron")
@@ -808,8 +811,8 @@ class IcosahedronTrCommand:
     def GetResources(self):
         return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/icosahedron_trunc.svg',
                 'Accel' : "Shift+F",
-                'MenuText': "Icosahedron truncated",
-                'ToolTip' : "Generate a Truncated Icosahedron (football)"}
+                'MenuText': QT_TRANSLATE_NOOP("Commands", "Icosahedron truncated"),
+                'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Truncated Icosahedron (football)")}
 
     def Activated(self):
         obj = FreeCAD.ActiveDocument.addObject("Part::FeaturePython", "IcosahedronTruncated")
@@ -971,8 +974,8 @@ class GeodesicSphereCommand:
     def GetResources(self):
         return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/geodesic_sphere.svg',
                 'Accel' : "Shift+G",
-                'MenuText': "Geodesic sphere",
-                'ToolTip' : "Generate Geodesic Spheres"}
+                'MenuText': QT_TRANSLATE_NOOP("Commands", "Geodesic sphere"),
+                'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate Geodesic Spheres")}
 
     def Activated(self):
         obj = FreeCAD.ActiveDocument.addObject("Part::FeaturePython", "GeodesicSphere")
@@ -1444,8 +1447,8 @@ class RegularSolidCommand:
     def GetResources(self):
         return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/regularsolid.svg',
                 'Accel' : "Shift+R",
-                'MenuText': "Regular Solid",
-                'ToolTip' : "Generate a Regular Solid"}
+                'MenuText': QT_TRANSLATE_NOOP("Commands", "Regular Solid"),
+                'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Regular Solid")}
 
     def Activated(self):
         obj = FreeCAD.ActiveDocument.addObject("Part::FeaturePython", "RegularSolid")
