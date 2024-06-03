@@ -57,11 +57,16 @@
 import FreeCAD,FreeCADGui
 import Part
 import math
-import sys
+import pyramids_utils
+import os
 from FreeCAD import Base
 
 translate = FreeCAD.Qt.translate
 QT_TRANSLATE_NOOP = FreeCAD.Qt.QT_TRANSLATE_NOOP
+
+icons_dir =  os.path.join(
+    pyramids_utils.getWorkbenchFolder(), "Resources", "Icons"
+)
 
 def horizontal_regular_polygon_vertexes(sidescount,radius,z, startangle = 0):
     vertexes = []
@@ -91,34 +96,6 @@ def horizontal_regular_pyramid_vertexes(sidescount,radius,z, anglez = 0): # angl
         vertex = (0,0,z)
         vertexes.append(vertex)
     return vertexes
-
-
-def getWorkbenchFolder():
-
-    import os.path
-    from os import path
-
-    import workbenchfolders
-
-    basedir = str(FreeCAD.getUserAppDataDir())
-    folder = ""
-
-    for tryfolder in workbenchfolders.recommended_folders:
-            if path.exists(basedir + tryfolder):
-                    folder = basedir + tryfolder
-                    return folder
-
-    for tryfolder in workbenchfolders.user_chosen_folders:
-            if path.exists(basedir + tryfolder):
-                    folder = basedir + tryfolder
-                    return folder
-            if path.exists(tryfolder):
-                    folder = tryfolder
-                    return folder
-
-    return ""
-
-
 
 
 # ===========================================================================
@@ -151,10 +128,11 @@ class ViewProviderBox:
 
     def getIcon(self):
         return (
-            getWorkbenchFolder()
-            + "/Resources/Icons/"
-            + (self.obj_name).lower()
-            + ".svg"
+            os.path.join(
+                pyramids_utils.getWorkbenchFolder(), "Resources", "Icons",
+                (self.obj_name).lower(),
+                ".svg"
+            )
         )
 
     def __getstate__(self):
@@ -251,7 +229,7 @@ class Pyramid:
 class PyramidCommand:
 
     def GetResources(self):
-        return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/pyramid.svg',
+        return {'Pixmap'  : os.path.join(icons_dir, "pyramid.svg"),
                 'Accel' : "Shift+P",
                 'MenuText': QT_TRANSLATE_NOOP("Commands", "Pyramid"),
                 'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Pyramid with any number of sides")}
@@ -323,7 +301,7 @@ class Tetrahedron:
 class TetrahedronCommand:
 
     def GetResources(self):
-        return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/tetrahedron.svg',
+        return {'Pixmap'  : os.path.join(icons_dir, "tetrahedron.svg"),
                 'Accel' : "Shift+T",
                 'MenuText': QT_TRANSLATE_NOOP("Commands", "Tetrahedron"),
                 'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Tetrahedron")}
@@ -393,7 +371,7 @@ class Hexahedron:
 class HexahedronCommand:
 
     def GetResources(self):
-        return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/hexahedron.svg',
+        return {'Pixmap'  : os.path.join(icons_dir, "hexahedron.svg"),
                 'Accel' : "Shift+H",
                 'MenuText': QT_TRANSLATE_NOOP("Commands", "Hexahedron"),
                 'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Hexahedron")}
@@ -462,7 +440,7 @@ class Octahedron:
 class OctahedronCommand:
 
     def GetResources(self):
-        return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/octahedron.svg',
+        return {'Pixmap'  : os.path.join(icons_dir, "octahedron.svg"),
                 'Accel' : "Shift+O",
                 'MenuText': QT_TRANSLATE_NOOP("Commands", "Octahedron"),
                 'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Octahedron")}
@@ -559,7 +537,7 @@ class Dodecahedron:
 
 class DodecahedronCommand:
     def GetResources(self):
-        return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/dodecahedron.svg',
+        return {'Pixmap'  : os.path.join(icons_dir, "dodecahedron.svg"),
                 'Accel' : "Shift+D",
                 'MenuText': QT_TRANSLATE_NOOP("Commands", "Dodecahedron"),
                 'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Dodecahedron")}
@@ -650,7 +628,7 @@ class Icosahedron:
 
 class IcosahedronCommand:
     def GetResources(self):
-        return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/icosahedron.svg',
+        return {'Pixmap'  : os.path.join(icons_dir, "icosahedron.svg"),
                 'Accel' : "Shift+I",
                 'MenuText': QT_TRANSLATE_NOOP("Commands", "Icosahedron"),
                 'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Icosahedron")}
@@ -809,7 +787,7 @@ class Icosahedron_truncated:
 
 class IcosahedronTrCommand:
     def GetResources(self):
-        return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/icosahedron_trunc.svg',
+        return {'Pixmap'  : os.path.join(icons_dir, "icosahedron_trunc.svg"),
                 'Accel' : "Shift+F",
                 'MenuText': QT_TRANSLATE_NOOP("Commands", "Icosahedron truncated"),
                 'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Truncated Icosahedron (football)")}
@@ -972,7 +950,7 @@ class Geodesic_sphere:
 
 class GeodesicSphereCommand:
     def GetResources(self):
-        return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/geodesic_sphere.svg',
+        return {'Pixmap'  : os.path.join(icons_dir, "geodesic_sphere.svg"),
                 'Accel' : "Shift+G",
                 'MenuText': QT_TRANSLATE_NOOP("Commands", "Geodesic sphere"),
                 'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate Geodesic Spheres")}
@@ -1445,7 +1423,7 @@ class RegularSolid:
 
 class RegularSolidCommand:
     def GetResources(self):
-        return {'Pixmap'  : getWorkbenchFolder() + '/Resources/Icons/regularsolid.svg',
+        return {'Pixmap'  : os.path.join(icons_dir, "regularsolid.svg"),
                 'Accel' : "Shift+R",
                 'MenuText': QT_TRANSLATE_NOOP("Commands", "Regular Solid"),
                 'ToolTip' : QT_TRANSLATE_NOOP("Commands", "Generate a Regular Solid")}
